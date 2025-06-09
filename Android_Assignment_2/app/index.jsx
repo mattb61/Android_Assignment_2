@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import {Text, View, Button} from "react-native";
 import {useState} from "react";
 import Movie from "./components/Movie.jsx";
 
@@ -12,6 +12,9 @@ import movieData from "../assets/movies.json";
 console.log(movieData);
 
 export default function Index() {
+
+    const [movieIndex, setMovieIndex] = useState(0);
+
   return (
     <View
       style={{
@@ -20,7 +23,8 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <Movie movieData={movieData[movieIndex]} image={images[movieData[movieIndex].image]}/>
+      <Button title="Switch movie" onPress={() => setMovieIndex((movieIndex + 1) % movieData.length)}/>
     </View>
   );
 }
